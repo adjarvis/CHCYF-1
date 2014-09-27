@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>CHCYF App</title>
+        <meta name = "viewport" content = "width = device-width, initial-scale= 1.0, user-scalable = no">
+<!--            <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css">-->
+        <link rel="stylesheet" href="jquery.mobile-1.4.4.css">
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+        <script type="text/javascript" src="index.js"></script>
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>   
+         <script>
+        $(document).on('pageshow', '#index',function(e,data){   
+    $('#content').height(getRealContentHeight());
+   // This is the minimum zoom level that we'll allow
+   var minZoomLevel = 12;
+
+   var map = new google.maps.Map(document.getElementById('map_canvas'), {
+      zoom: minZoomLevel,
+      center: new google.maps.LatLng(35.91, -79.05),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+   });   
+});
+
+function getRealContentHeight() {
+	var header = $.mobile.activePage.find("div[data-role='header']:visible");
+	var footer = $.mobile.activePage.find("div[data-role='footer']:visible");
+	var content = $.mobile.activePage.find("div[data-role='content']:visible:visible");
+	var viewport_height = $(window).height();
+
+	var content_height = viewport_height - header.outerHeight() - footer.outerHeight();
+	if((content.outerHeight() - header.outerHeight() - footer.outerHeight()) <= viewport_height) {
+		content_height -= (content.outerHeight() - content.height());
+	} 
+	return content_height;
+}
+        </script>
+
+        
+    </head>
+    <body>
+
+
+<div data-role="page" id="home"> <!-- Home Screen -->
+        <div id="logo">       
+    <img src="http://chcyouth.org/sites/all/themes/chcyf/logo.png" alt="logo" > </div>
+
+         <div data-role="main" class="ui-content" id="searchbars">
+            <form method="get" action="#page2">
+            <a href="#search" class="ui-btn" data-transition="slide">Search Programs</a>
+            <a href="#filters" class="ui-btn" data-transition="slide">Browse by Filters</a>
+            <a href="#events" class="ui-btn" data-transition="slide">Events</a>
+            </form>
+        </div>
+
+        <div data-role="footer" data-position="fixed">
+    <a href="#about" class="ui-btn ui-corner-all ui-shadow ui-icon-info ui-btn-icon-left" data-transition="slideup">About Us</a>
+  </div>
+
+ </div>
+
+<div data-role="page" id="search">  <!--  search page  -->
+       
+             <div data-role="header">
+        <a href="#" class="ui-btn ui-btn-left ui-corner-all ui-shadow ui-icon-arrow-l ui-btn-icon-notext" data-transition="slide" data-direction="reverse" data-rel="back" >Home</a>
+            <h1> Program List</h1>
+            </div>
+    
+            <div data-role="main" class="ui-content">
+               <ul data-role="listview" data-filter="true" data-input="#myFilter"  >
+                    <li><a href="#ymca" data-transition="slide">YMCA</a></li>
+                    <li><a href="#">New Hope Camp</a></li>
+                    <li><a href="#">SKJAJA Fund</a></li>
+                    <li><a href="#">The Arc of Orange County</a></li>
+                    <li><a href="#">emPOWERment</a></li>
+                    <li><a href="#">Art Therapy Institute</a></li>
+                    <li><a href="#">Big Brothers Big Sisters of the Triangle</a></li>
+                    <li><a href="#">Dispute Settlement Center, Inc</a></li>
+                    <li><a href="#">Chapel Hill Ronald Mcdonald House</a></li>
+                    <li><a href="#">Blue Ribbon Mentor-Advocate</a></li>
+                   
+               </ul> 
+            </div>
+    
+            <div data-role="footer" data-position="fixed">
+                <form class="ui-filterable">
+                <input id="myFilter" data-type="search" placeholder="Search by program name...">
+                </form>
+            </div>
+</div>
+        
+<div data-role="page" id="events">  <!--  events -->
+       
+            <div data-role="header">
+         <a href="#" class="ui-btn ui-btn-left ui-corner-all ui-shadow ui-icon-arrow-l ui-btn-icon-notext" data-rel="back" data-transition="slide" data-direction="reverse">Home</a>
+            <h1>Events</h1>
+        </div>
+            <div data-role="main" class="ui-content">
+               <ul data-role="listview" >
+                    <li><a href="#">Event 1</a></li>
+                    <li><a href="#">Event 2</a></li>
+                    <li><a href="#">Event 3</a></li>
+                    <li><a href="#">Event 4</a></li>
+                    <li><a href="#">Event 5</a></li>
+                    <li><a href="#">Event 6</a></li>
+                    <li><a href="#">Event 7</a></li>
+                    <li><a href="#">Event 8</a></li>
+                    <li><a href="#">Event 9</a></li>
+                    <li><a href="#">Event 10</a></li>
+                   
+               </ul> 
+            </div>
+</div>
+        
+<div data-role="page" id="about"> <!-- About Us -->
+
+        <div data-role="header">
+         <a href="#home" class="ui-btn ui-btn-left ui-corner-all ui-shadow ui-icon-arrow-d ui-btn-icon-notext" data-transition="slidedown">Home</a>
+            <h1>Chapel Hill Carrboro Youth Forward</h1>
+        </div>
+
+         <div data-role="main" class="ui-content">
+            <p>
+            The Chapel Hill-Carrboro Youth Services Initiative is an effort to help connect children and youth between the ages of five and 20 living in the Chapel Hill and                     Carrboro             communities with nonprofit organizations serving youth. Born of a desire that all young people in Chapel Hill and Carrboro have access to programs              and activities that                  would contribute to their growth and development into happy and productive citizens, the Chapel Hill-Carrboro Youth Services                   Initiative is supported by a group of local              philanthropic organizations invested in the well-being of Chapel Hill and Carrboro children and youth.
+            </p>
+
+            <p>
+            This app is intended to serve as a resource for all community members - the youth and those working with youth - seeking opportunities and services that will help the                  youngest members of the Chapel Hill and Carrboro communities reach their greatest potential.
+            </p>
+            </div>
+</div>
+
+<div data-role="page" id="filters"><!-- filter page -->
+
+            <div data-role="header">
+                <a href="#home" class="ui-btn ui-btn-left ui-corner-all ui-shadow ui-icon-arrow-l ui-btn-icon-notext" data-transition="slide" data-direction="reverse" >Home</a>
+                <h1>Filters</h1>
+            </div>
+
+             <div data-role="main" class="ui-content">
+               <ul data-role="listview" data-inset="true">
+                    <li><a href="#servicetypes" data-transition="slide">Service Type<span class="ui-li-count">30</span></a></li>
+                    <li><a href="#">Time</a></li>
+                    <li><a href="#">Walk in</a></li>
+                    <li><a href="#">Free</a></li>
+               </ul> 
+                 
+            </div>
+
+
+</div>
+        
+<div data-role="page" id="servicetypes"><!-- service type page -->
+
+            <div data-role="header">
+                <a href="#filters" class="ui-btn ui-btn-left ui-corner-all ui-shadow ui-icon-arrow-l ui-btn-icon-notext" data-transition="slide" data-direction="reverse" >Home</a>
+                <h1>Service Types</h1>
+            </div>
+
+             <div data-role="main" class="ui-content">
+               <ul data-role="listview">
+                    <li><a href="#recreation" data-transition="slide">Recreation<span class="ui-li-count">25</span></a></li>
+                    <li><a href="#">Enrichment</a></li>
+                    <li><a href="#">Mentoring</a></li>
+                    <li><a href="#">Health/Wellness</a></li>
+                    <li><a href="#">Summer Camp</a></li>
+                    <li><a href="#">Academic Support</a></li>
+                    <li><a href="#">Advocacy</a></li>
+                    <li><a href="#">Athletics</a></li>
+                    <li><a href="#">After School/Child Care</a></li>
+                    <li><a href="#">Arts</a></li>
+                    <li><a href="#">Tutoring</a></li>
+               </ul> 
+                 
+            </div>
+
+
+</div>
+        
+<div data-role="page" id="recreation">
+       
+            <div data-role="header">
+        <a href="#servicetypes" class="ui-btn ui-btn-left ui-corner-all ui-shadow ui-icon-arrow-l ui-btn-icon-notext" data-transition="slide" data-direction="reverse" >Home</a>
+                <h1>Recreation</h1>
+            </div>
+            <div data-role="main" class="ui-content">
+               <ul data-role="listview">
+                    <li><a href="#ymca" data-transition="slide">YMCA</a></li>
+                    <li><a href="#">New Hope Camp</a></li>
+                    <li><a href="#">SKJAJA Fund</a></li>
+                    <li><a href="#">The Arc of Orange County</a></li>  
+               </ul> 
+            </div>
+</div>
+        
+<div data-role="page" id="ymca">
+        <div data-role="header">
+        <a href="#recreation" class="ui-btn ui-btn-left ui-corner-all ui-shadow ui-icon-arrow-l ui-btn-icon-notext" data-transition="slide" data-direction="reverse" data-rel="back" >Home</a>
+        <h1>YMCA</h1>
+        </div>
+    <div data-role="main" class="ui-content">
+    <p>
+        The YMCA uses day camp, team leadership activities, and a variety of sports and aquatics to build character, self-confidence, and leadership in children. The YMCA seeks to put Christian principles into practice through programs that build healthy spirit, mind and body for all. The bulk of the Y’s service focuses on Health Living, providing recreational and fitness activities for all age groups. The Y also encourages Social Responsibility by providing adult and youth members with opportunities for giving and service. Lastly, the Y operates targeted Youth Development programming, including explicit youth leadership services.
+    </p>
+    
+
+
+  </div>
+    
+     <div data-role="footer" data-position="fixed">
+    <a href="#index" class="ui-btn ui-shadow ui-icon-location ui-btn-icon-right" >Get me there!</a>
+   
+  </div>
+</div>
+  
+<div data-role="page" id="index">
+            <div data-theme="a" data-role="header">
+                <form method="get" action="#page2">
+            <input type="search" name="search" id="search" placeholder="Starting Location">
+            </form>
+            </div>
+             
+            <div data-role="content" id="content">
+                <div id="map_canvas" style="height:100%"></div>
+            </div>
+             
+            <div data-role="footer" data-position="fixed">
+               <div data-role="navbar">
+              <ul>
+                <li><a href="#">Walk</a></li>
+                <li><a href="#">Bus</a></li>
+              </ul>
+                </div>
+            </div>
+        </div>        
+<!--        
+<div data-role="page" data-dialog="true" id="modepopup">
+      <div data-role="header">
+    <h1>How?</h1>
+  </div>
+
+  <div data-role="main" class="ui-content">
+    <a href="#" class="ui-btn">Bus</a><br>
+  <a href="#" class="ui-btn">Walk</a>
+  </div>
+
+</div>
+-->
+
+    </body>
+</html>
